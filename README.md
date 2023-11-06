@@ -16,18 +16,18 @@ In this scenario, Josh, Dylan, and Joey are part of a lending group. The followi
 - **Cyril**: `join("Cyril");`
 
 ### Step 4: Josh & Dylan Each Transfer $800 into the Pool
-- **Josh**: `depositFunds({value: 800 ether});`
-- **Dylan**: `depositFunds({value: 800 ether});`
+- **Josh**: `depositFunds(value: 800);`
+- **Dylan**: `depositFunds(value: 800);`
 
 ### Step 5: Cyril Requests a Loan for $1000 for Investing in BananaCoin
-- **Cyril**: `requestLoan(1000, now + 1 week, "Invest in BananaCoin");`
+- **Cyril**: `requestLoan(1000, 10%, now + 1 week, "Invest in BananaCoin");`
 
 ### Step 6: Dylan Contributes $800 and Josh Contributes $200 to Fill the Loan Request
 - **Dylan**: `fillLoanRequest(loanId, 800);`
 - **Josh**: `fillLoanRequest(loanId, 200);`
 
 ### Step 7: Cyril's Loan Automaticaly Repays From His Balance
-- **System**: `repayLoan(loanId, 1100);`
+- **System**: `autoPayLoan(loanId, 1100);`
 
 ### Step 8: Josh Withdraws All His Money from the Pool
 - **Josh**: `withdrawFunds(220);`
@@ -37,7 +37,7 @@ In this scenario, Josh, Dylan, and Joey are part of a lending group. The followi
 
 ### Case Default: Loan Repayment Time Expires for Cyril's $1000 Loan
 - The smart contract automatically detects the default when the repayment time expires and balance is not high enough and kicks cyril from the group adding him to a banned list of IDs for rejoining. It first emptys Cyrils balance and disributes it to creditors proportunitaley.
-- **System**: `triggerKick(0xAddressOfCyril);`
+- **System**: `default(0xAddressOfCyril);`
 
 ### Case Cancel: Cyril Cancels Loan Befroe Fulfilment
 - Cyril Decides to Cancel his loan request before it is filled and funds are refunded to contributors
@@ -55,9 +55,9 @@ In this scenario, Josh, Dylan, and Joey are part of a lending group. The followi
 
 
 
-##Back End Archetecture
+## Back End Archetecture
 
-###Core Structs
+### Core Structs
 
     struct Member {
         string username; 
