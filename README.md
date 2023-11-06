@@ -26,16 +26,34 @@ In this scenario, Josh, Dylan, and Joey are part of a lending group. The followi
 - **Dylan**: `fillLoanRequest(loanId, 800);`
 - **Josh**: `fillLoanRequest(loanId, 200);`
 
-### Step 7: Cyril Repays the Loan 1 Week Later
-- **Cyril**: `repayLoan(loanId, 1100);`
+### Step 7: Cyril's Loan Automaticaly Repays From His Balance
+- **System**: `repayLoan(loanId, 1100);`
 
 ### Step 8: Josh Withdraws All His Money from the Pool
-- **Josh**: `withdrawFunds({value: hisTotalBalance});`
+- **Josh**: `withdrawFunds(220);`
 
 
+## Other Cases/Examples
+
+### Case Default: Loan Repayment Time Expires for Cyril's $1000 Loan
+- The smart contract automatically detects the default when the repayment time expires and balance is not high enough and kicks cyril from the group adding him to a banned list of IDs for rejoining. It first emptys Cyrils balance and disributes it to creditors proportunitaley.
+- **System**: `triggerKick(0xAddressOfCyril);`
+
+### Case Cancel: Cyril Cancels Loan Befroe Fulfilment
+- Cyril Decides to Cancel his loan request before it is filled and funds are refunded to contributors
+- **Cyril**: `cancelLoan(loanID);`
+
+### Case PayNow: Cyril Pays his Loan before the alloted period
+- Cyril Decides to pay his loan request before it is automatically paid. This enables him to request a new loan (which is the primary reason for paying early).
+- **Cyril**: `payNowLoan(loanID);`
+
+## Front End Design
+
+![Loan Frames](pics/loan_frames.png "Loan Frames Design")
+
+![Main Screen](pics/main.png "Main Screen Design")
 
 
-##Flow of Logic Example
 
 ##Back End Archetecture
 
