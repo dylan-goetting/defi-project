@@ -65,4 +65,4 @@ In this scenario, Josh, Dylan, and Joey are part of a lending group. The followi
         uint256 balance;
     }
 
-    Member stuct stores all relevant information to users in the member pool
+    Member stuct stores all relevant information to users in the member pool. 
