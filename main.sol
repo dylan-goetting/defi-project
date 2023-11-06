@@ -6,6 +6,14 @@ contract Group {
         bool isPending;
         uint voteCount;
     }
+    struct Request {
+        address requester;
+        address approver;
+        uint amount;
+        bool approved;
+    }
+    
+    Request[] public requests;
 
     mapping(address => Member) public members;
     mapping(address => mapping(address => bool)) public votes;
@@ -47,4 +55,26 @@ contract Group {
             memberCount++;
         }
     }
+
+    function createRequest(address _approver, uint _amount) public onlyMembers {
+        requests.push(Request({
+            requester: msg.sender,
+            approver: _approver,
+            amount: _amount,
+            approved: false
+        }));
+    }
+
+    function approveRequest(uint _requestId) public payable {
+        Request storage request = requests[_requestId];
+        
+        require(msg.sender == request.approver, "Only the approver can approve this request.");
+        require(!request.approved, "This request has already been approved.");
+        require(msg.value >= request.amount, "Not enough ether sent to cover the request.");
+    
+        request.approved = true;
+        
+        payable(request.requester).transfer(request.amount);
+    }
+    
 }
