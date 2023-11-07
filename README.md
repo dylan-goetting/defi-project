@@ -51,11 +51,13 @@ In this scenario, Josh, Dylan, and Joey are part of a lending group. The followi
 
 ### Main Layout
 
-![Main Screen](pics/main.png "Main Screen Design")
+<!-- ![Main Screen](pics/main.png "Main Screen Design") -->
+<img src="pics/main.png" alt="Main Screen Design" width="600"/>
+
 
 The main screen consists of the following components:
 - **My Loan Info** (top left)
-  - See more details in "Loan Frames"
+  - See more details in **My Loan Info**
 - **Balance Info** (top right)
   - Ability to deposit/withdraw in/out of pool
 - **Open Loans** (middle)
@@ -78,7 +80,9 @@ The main screen consists of the following components:
     - Have option to approve or reject
   - All members have username, FriendLend score®, & Date joined listed
 
-![Loan Frames](pics/loan_frames.png "Loan Frames Design")
+<!-- ![Loan Frames](pics/loan_frames.png "Loan Frames Design") -->
+<img src="pics/loan_frames.png" alt="Loan Frames Design" width="600"/>
+
 
 **My Loan Info** (top left) has various states:
 - **State 1: No current loan requested**
