@@ -49,9 +49,44 @@ In this scenario, Josh, Dylan, and Joey are part of a lending group. The followi
 
 ## Front End Design
 
-![Loan Frames](pics/loan_frames.png "Loan Frames Design")
+### Main Layout
 
 ![Main Screen](pics/main.png "Main Screen Design")
+
+The main screen consists of the following components:
+- **My Loan Info** (top left)
+  - See more details in "Loan Frames"
+- **Balance Info** (top right)
+  - Ability to deposit/withdraw in/out of pool
+- **Open Loans** (middle)
+  - Shows all open loans
+  - Each loan shows the following info:
+    - Loan ID
+    - Percent of total filled
+    - Username of loan requester
+    - FriendLend score®
+    - Amount Requested
+    - Loan Maturity Date
+    - Total Interest Rate
+    - Calculated Daily Rate
+  - Have the option to contribute to loan
+    - Can contribute between 1 Dai and remaining unfilled amount
+    - Must have at least that much in balance to contribute
+- **All Members** (bottom)
+  - Option to invite new members based on ETH public key
+  - Pending users at the top
+    - Have option to approve or reject
+  - All members have username, FriendLend score®, & Date joined listed
+
+![Loan Frames](pics/loan_frames.png "Loan Frames Design")
+
+**My Loan Info** (top left) has various states:
+- **State 1: No current loan requested**
+  - Option to request a new loan & set amount, interest rate, and due date
+- **State 2: Current Unfilled Loan Open**
+  - Option to cancel loan and refund backers
+- **State 3: Current Filled Loan Active**
+  - Option to repay early which allows you to open a new loan
 
 
 
