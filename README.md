@@ -91,14 +91,27 @@ The main screen consists of the following components:
 
 
 
-## Back End Archetecture
+## Back End Architecture
 
-### Core Structs
+### Structs
 
-    struct Member {
-        string username; 
-        uint256 friendScore;
-        uint256 balance;
-    }
+#### Member Struct
+Stores all the relevant information of a user in the network. A user is represented as a `Member` in the system.
 
-    Member stuct stores all relevant information to users in the member pool. 
+- `address memberAddress`: The Ethereum address of the member.
+- `string username`: The chosen username of the member in the FriendLend platform.
+- `uint256 friendScore`: The FriendLend score of the member which can be a representation of their reliability and reputation within the platform.
+- `uint256 balance`: The amount of currency (e.g., Ether) that the member has deposited in the FriendLend pool.
+- `bool isPending`: A flag to indicate if the member's invitation is still pending based on the votes.
+- `uint256 dateAdded`: A timestamp of when the member was added to the network. This is likely the block timestamp when the member was added.
+
+#### Loan Request Struct
+Contains the details of a loan request by a borrower.
+
+- `address borrower`: The Ethereum address of the member requesting the loan.
+- `uint256 amount`: The total amount of currency being requested for the loan.
+- `uint256 filled`: The amount of the loan that has already been funded by lenders.
+- `uint256 dueDate`: The timestamp of when the loan is to be repaid in full.
+- `bool isFulfilled`: A flag to indicate if the loan request has been completely filled.
+- `mapping(address => uint256) contributions`: A mapping of addresses to the amount of currency each has contributed to the loan. This allows tracking of individual contributions and is crucial for managing repayments, cancellations, or defaults.
+

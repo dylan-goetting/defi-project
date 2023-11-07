@@ -4,9 +4,12 @@ pragma solidity ^0.8.0;
 contract FriendLend {
 
     struct Member {
+        address memberAddress;
         string username;
         uint256 friendScore;
         uint256 balance;
+        bool isPending;
+        uint256 dateAdded;
     }
 
     struct LoanRequest {
@@ -15,6 +18,7 @@ contract FriendLend {
         uint256 filled;
         uint256 dueDate;
         bool isFulfilled;
+        mapping(address => uint256) contributions;
     }
 
     address public owner;
