@@ -115,3 +115,39 @@ Contains the details of a loan request by a borrower.
 - `bool isFulfilled`: A flag to indicate if the loan request has been completely filled.
 - `mapping(address => uint256) contributions`: A mapping of addresses to the amount of currency each has contributed to the loan. This allows tracking of individual contributions and is crucial for managing repayments, cancellations, or defaults.
 
+### Functions
+
+#### User Post Functions
+These are the functions that users can call to perform transactions and alter the state of the contract. They include functions to handle deposits, loan requests, voting, and repayments.
+
+- `proposeInvite(address)`: Propose a new member to the group by submitting their Ethereum address.
+- `voteOnPendingPerson(address, bool)`: Vote on whether to admit a pending member into the group.
+- `join(string)`: A new member uses this function to join after being approved.
+- `depositFunds(uint256)`: Deposit funds into the lending pool.
+- `requestLoan(uint256, uint256, uint256, string)`: Request a new loan specifying the amount, interest rate, repayment date, and a description.
+- `fillLoanRequest(uint256, uint256)`: Contribute to a loan request.
+- `withdrawFunds(uint256)`: Withdraw funds from the lending pool.
+- `cancelLoan(uint256)`: Cancel an unfilled loan request and trigger refunds.
+- `payNowLoan(uint256)`: Pay off an outstanding loan early.
+
+#### User Get Functions
+These functions are called by users to retrieve information from the contract without making any transactions, typically to display data in the UI.
+
+- `getMemberDetails(address)`: Retrieve the details of a specific member, such as their username, FriendLend score, and balance.
+- `getLoanDetails(uint256)`: Get detailed information about a specific loan request.
+- `getPendingMembers()`: List all members whose membership is still pending based on votes.
+- `getActiveLoans()`: Get a list of all active loan requests that are yet to be fulfilled.
+
+#### System Functions
+Functions that the system calls automatically to enforce the rules of the contract. These functions may be triggered by transactions or by time-based events.
+
+- `autoPayLoan(uint256)`: Automatically deduct repayment amounts from a borrower's balance once the loan is due.
+- `default(address)`: Handle a loan default, remove the borrower from the group, distribute their balance to creditors, and add the borrower to the banned list.
+
+#### Other Helper Functions
+Utility functions that support the contract's operations and provide additional functionality. They might include functions for internal calculations, logging, or contract maintenance tasks.
+
+- `calculateInterest(uint256, uint256, uint256)`: Calculate the due interest on a loan based on the principal, rate, and time.
+- `updateFriendScore(address, uint256)`: Update the FriendLend score of a member based on their activity and loan repayment behavior.
+- `logActivity(string)`: Log a user's activity for auditing purposes.
+- `checkMembershipStatus(address)`: Check if a user's membership application has been approved or is still pending.
